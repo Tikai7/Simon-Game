@@ -133,29 +133,25 @@ function setColor(n)
     if(computerTurn || playerTurn)
     {
         if(n == 0)
-        {
-            cyan_div.style.backgroundColor = "darkcyan";
-        }
+            cyan_div.style.WebkitFilter  = "brightness(50%)";
+        
         else if (n == 1)
-        {
-            red_div.style.backgroundColor = "darkred";
-        }
+            red_div.style.WebkitFilter  = "brightness(50%)";
+        
         else if (n == 2)
-        {
-            yellow_div.style.backgroundColor = "goldenrod";
-        }
+            yellow_div.style.WebkitFilter  = "brightness(50%)";
+        
         else
-        {
-            green_div.style.backgroundColor = "darkgreen";
-        }
+            green_div.style.WebkitFilter  = "brightness(50%)";
+        
         setTimeout(clearColor,300);
     }
  
 }
 function clearColor()
 {
-    cyan_div.style.backgroundColor = "cyan";
-    red_div.style.backgroundColor = "red";
-    yellow_div.style.backgroundColor = "yellow";
-    green_div.style.backgroundColor = "green";
+    cyan_div.style.WebkitFilter  = "brightness(100%)";
+    red_div.style.WebkitFilter  = "brightness(100%)";
+    yellow_div.style.WebkitFilter  = "brightness(100%)";
+    green_div.style.WebkitFilter  = "brightness(100%)";
 }
