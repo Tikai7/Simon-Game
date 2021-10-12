@@ -12,14 +12,20 @@ let couleurs = [0,1,2,3];
 let intervalID=this;
 let same = true;
 let interval_color = 800;
-
+let audio;
 
 document.getElementById("play").addEventListener("click",function(){
     reset();
+    play_audio("audio/Click.mp3");
     interval_color = 800;
     reset_txt();
     play();
 })
+function play_audio(link)
+{
+    audio = new Audio(link)
+    audio.play();
+}
 
 function play() {
     if(computerTurn)
@@ -64,6 +70,7 @@ function check()
     if(same)
     {
         document.getElementById("status").innerHTML = " Bien joué ";
+        setTimeout(function(){play_audio("audio/win.mp3");},100);
         reset();
         setTimeout(reset_txt,800);
         interval_color -= 10;
@@ -90,6 +97,8 @@ function reset()
 }
 function finish()
 {
+
+    setTimeout(function (){play_audio("audio/lose.mp3");},200);
     reset();
     interval_color = 800;
     computerTurn = false;
@@ -130,22 +139,25 @@ function click_color()
 }
 function setColor(n)
 {
-    if(computerTurn || playerTurn)
-    {
-        if(n == 0)
-            cyan_div.style.WebkitFilter  = "brightness(50%)";
-        
-        else if (n == 1)
-            red_div.style.WebkitFilter  = "brightness(50%)";
-        
-        else if (n == 2)
-            yellow_div.style.WebkitFilter  = "brightness(50%)";
-        
-        else
-            green_div.style.WebkitFilter  = "brightness(50%)";
-        
-        setTimeout(clearColor,300);
+    if(n == 0){
+        cyan_div.style.WebkitFilter  = "brightness(50%)";
+        play_audio("audio/Do.mp3");
     }
+    else if (n == 1){
+        red_div.style.WebkitFilter  = "brightness(50%)";
+        play_audio("audio/RE.mp3");
+     
+    }
+    else if (n == 2){
+        yellow_div.style.WebkitFilter  = "brightness(50%)";
+        play_audio("audio/MI.mp3");
+    }
+    else{
+        green_div.style.WebkitFilter  = "brightness(50%)";
+        play_audio("audio/Fa.mp3"); 
+    }   
+    setTimeout(clearColor,300);
+    
  
 }
 function clearColor()
