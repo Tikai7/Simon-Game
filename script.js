@@ -13,11 +13,13 @@ let intervalID=this;
 let same = true;
 let interval_color = 800;
 let audio;
+let numberOfRepetition = 3;
+let won = 0;
 
 document.getElementById("play").addEventListener("click",function(){
     reset();
     play_audio("audio/Click.mp3");
-    interval_color = 800;
+    semi_reset();
     reset_txt();
     play();
 })
@@ -74,6 +76,11 @@ function check()
         reset();
         setTimeout(reset_txt,800);
         interval_color -= 10;
+        won++
+        if(won%2 == 0)
+            numberOfRepetition++;
+
+        console.log(numberOfRepetition);
         if(interval_color<= 100)
             interval_color = 100;
 
@@ -84,6 +91,12 @@ function check()
         finish();
     }
        
+}
+function semi_reset()
+{
+    interval_color = 800;
+    numberOfRepetition = 3;
+    won = 0;
 }
 function reset()
 {
@@ -100,7 +113,7 @@ function finish()
 
     setTimeout(function (){play_audio("audio/lose.mp3");},200);
     reset();
-    interval_color = 800;
+    semi_reset();
     computerTurn = false;
     playerTurn = false;
     document.getElementById("status").innerHTML = " Perdu ! ";
@@ -108,7 +121,7 @@ function finish()
     
 }
 function reset_txt(){
-    document.getElementById("status").innerHTML = "Retenez la séquence";
+    document.getElementById("status").innerHTML = "Retenez la séquence"+" ("+numberOfRepetition+") couleurs";
 }
 function reset_game() {
     document.getElementById("status").innerHTML = "Appuyez sur jouer";
@@ -118,7 +131,7 @@ function pre_check(i)
     setColor(i);   
     player_moove.push(i);
     console.log(player_moove);
-    if(player_moove.length == 4 && computer_moove.length == 4){
+    if(player_moove.length == numberOfRepetition && computer_moove.length == numberOfRepetition){
         check();
     }
  
@@ -129,7 +142,7 @@ function click_color()
     setColor(n);
     computer_moove.push(n);
     console.log(computer_moove);
-    if(computer_moove.length == 4){
+    if(computer_moove.length == numberOfRepetition){
         clearInterval(intervalID);
         computerTurn = false;
         playerTurn = true;
