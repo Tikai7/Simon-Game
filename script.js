@@ -37,7 +37,7 @@ function basic_reset()
 }
 function do_music()
 {
-    document.getElementById("status").innerHTML = "Faites de la musique !";
+    document.getElementById("status").innerHTML = "Do some music !";
     playerTurn = false;
     computerTurn = false;
     music = true;
@@ -57,7 +57,7 @@ function play() {
 }
 function player_play()
 {
-    document.getElementById("status").innerHTML = "A votre tour";
+    document.getElementById("status").innerHTML = "Your Turn";
 }
 
 cyan_div.addEventListener("click",function(){
@@ -99,7 +99,7 @@ function check()
 
     if(same)
     {
-        document.getElementById("status").innerHTML = " Bien joué ";
+        document.getElementById("status").innerHTML = " Nice ! ";
         setTimeout(function(){play_audio("audio/win.mp3");},100);
         reset();
         setTimeout(reset_txt,800);
@@ -146,15 +146,15 @@ function finish()
     semi_reset();
     computerTurn = false;
     playerTurn = false;
-    document.getElementById("status").innerHTML = " Perdu ! ";
+    document.getElementById("status").innerHTML = " Game Over ! ";
     setTimeout(reset_game,800);
     
 }
 function reset_txt(){
-    document.getElementById("status").innerHTML = "Retenez la séquence"+" ("+numberOfRepetition+") couleurs";
+    document.getElementById("status").innerHTML = "Observe the colours "+" ("+numberOfRepetition+") colours";
 }
 function reset_game() {
-    document.getElementById("status").innerHTML = "Appuyez sur jouer";
+    document.getElementById("status").innerHTML = "Click on Play";
 }
 function pre_check(i)
 {
