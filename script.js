@@ -15,14 +15,33 @@ let interval_color = 800;
 let audio;
 let numberOfRepetition = 3;
 let won = 0;
+let music = false;
+let isPlaying = false;
 
 document.getElementById("play").addEventListener("click",function(){
+    basic_reset();
+    play();
+})
+document.getElementById("doMusic").addEventListener("click",function(){
+    if(!isPlaying){
+        basic_reset();
+        do_music();
+    }
+})
+function basic_reset()
+{
     reset();
     play_audio("audio/Click.mp3");
     semi_reset();
     reset_txt();
-    play();
-})
+}
+function do_music()
+{
+    document.getElementById("status").innerHTML = "Faites de la musique !";
+    playerTurn = false;
+    computerTurn = false;
+    music = true;
+}
 function play_audio(link)
 {
     audio = new Audio(link)
@@ -30,6 +49,7 @@ function play_audio(link)
 }
 
 function play() {
+    isPlaying = true;
     if(computerTurn)
     {
         intervalID = setInterval(click_color,interval_color);
@@ -42,19 +62,27 @@ function player_play()
 
 cyan_div.addEventListener("click",function(){
     if(playerTurn)
-         pre_check(0);
+        pre_check(0);
+    else if (music)
+        setColor(0);
 });
 red_div.addEventListener("click",function(){
     if(playerTurn)
         pre_check(1);
+    else if (music)
+        setColor(1);
 });
 yellow_div.addEventListener("click",function(){
     if(playerTurn)
         pre_check(2);
+    else if (music)
+        setColor(2);
 });
 green_div.addEventListener("click",function(){
     if(playerTurn)
         pre_check(3);
+    else if (music)
+        setColor(3);
 });
 
 function check()
@@ -88,6 +116,7 @@ function check()
     }
     else{
         reset();
+        isPlaying = false;
         finish();
     }
        
@@ -100,6 +129,7 @@ function semi_reset()
 }
 function reset()
 {
+    music = false;
     computerTurn = true;
     playerTurn = false;
     player_moove = [];
