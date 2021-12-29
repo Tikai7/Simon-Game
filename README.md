@@ -1,5 +1,7 @@
 # Simon-Game
   The aim is to repeat the colours displayed on the screen
+  ![Capture](https://user-images.githubusercontent.com/68500496/147692074-dc6e73bc-5aa9-425d-9573-aa9289ec3385.PNG)
+
 # How to play ?
 # There are two game modes
 # Firstly "Play"
